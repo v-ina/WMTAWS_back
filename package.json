@@ -1,12 +1,12 @@
 {
-  "name": "projet_final_api",
+  "name": "wmt_api",
   "version": "1.0.0",
-  "description": "",
+  "description": "we make team =)",
   "main": "app.js",
   "scripts": {
     "start": "npx nodemon app.js"
   },
-  "author": "yeonsoo",
+  "author": "yeonsooKang",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
