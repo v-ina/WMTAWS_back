@@ -14,11 +14,9 @@ app.use(cors())
 // app.use(cors("http://"))
 // app.use(cors({ origin: 'http://localhost:3333' }))
 
-app.set("port", process.env.PORT || port)
+// app.set("port", process.env.PORT || port)
 
-app.get("/", (req,res)=>{
-    res.sendFile(path.join(__dirname, "/index.html"))
-})
+
 
 const articleRouter = require('./routes/articleRoutes')
 const userRouter = require('./routes/userRoutes')
@@ -39,6 +37,10 @@ app.use('/api/suggestions', suggestionRouter)
 
 
 
-app.listen(app.get("port"), ()=>{
+app.listen(port, ()=>{
     console.log(`app is listening port ${port}`);
+})
+
+app.get("/", (req,res)=>{
+    res.json('My api running here =)')
 })
