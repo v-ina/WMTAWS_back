@@ -24,9 +24,9 @@ const setUsers = (User) => {
 
 
 const setRoles = (Role) => {
-    Role.create({"id" : 1, "label" : "superadmin"})
-    Role.create({"id" : 2, "label" : "admin"})
-    Role.create({"id" : 3, "label" : "user"})
+    Role.create({"label" : "superadmin", "roleId" : 1})
+    Role.create({"label" : "admin", "roleId" : 2})
+    Role.create({"label" : "user", "roleId" : 2})
 }
 
 
