@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt')
 
 
 const setCategories = (Category) => {
-    Category.create({"category" : "dev"})
-    Category.create({"category" : "sport"})
-    Category.create({"category" : "student"})
-    Category.create({"category" : "game"})
+    Category.create({"id" : 1, "category" : "dev"})
+    Category.create({"id" : 2, "category" : "student"})
+    Category.create({"id" : 3, "category" : "sport"})
+    Category.create({"id" : 4, "category" : "game"})
 }
 
 
@@ -24,9 +24,9 @@ const setUsers = (User) => {
 
 
 const setRoles = (Role) => {
-    Role.create({"label" : "superadmin"})
-    Role.create({"label" : "admin"})
-    Role.create({"label" : "user"})
+    Role.create({"id" : 1, "label" : "superadmin"})
+    Role.create({"id" : 2, "label" : "admin"})
+    Role.create({"id" : 3, "label" : "user"})
 }
 
 
