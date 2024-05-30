@@ -25,7 +25,7 @@ const likeRouter = require('./routes/likeRoutes')
 const reportRouter = require('./routes/reportRoutes')
 const categoryRouter = require('./routes/categoryRoutes')
 const suggestionRouter = require('./routes/suggestionRoutes')
-
+const messageRouter = require('./routes/messageRoutes')
 
 app.use('/api/articles', articleRouter)
 app.use('/api/users', userRouter)
@@ -34,7 +34,7 @@ app.use('/api/likes', likeRouter)
 app.use('/api/reports', reportRouter)
 app.use('/api/categories', categoryRouter)
 app.use('/api/suggestions', suggestionRouter)
-
+app.use('/api/message', messageRouter)
 
 
 app.listen(port, ()=>{
