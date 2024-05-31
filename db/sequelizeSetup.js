@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize')
-const sequelize = new Sequelize('project_final_alpha', 'root', '', {
-    host : 'localhost',
+const sequelize = new Sequelize('wmtdatabase', 'yeonsoo', 'sjdnf3373', {
+    host : 'wmtdatabase.c1oq6keyi1fu.eu-west-3.rds.amazonaws.com',
     dialect : 'mariadb',
     logging : false
 })

@@ -93,6 +93,7 @@ const getLastMessagesForUser = async (req, res) => {
 
 
 const getMessagesBetweenUsers = async (req, res) => {
+    const currentUserId = req.params.currentUserId;
     const { receiverId, senderId } = req.query;
     try {
         const messageUserFks = await MessageUserFk.findAll({
@@ -131,12 +132,23 @@ const getMessagesBetweenUsers = async (req, res) => {
         });
         
 
-            await Promise.all(messages.map(async (message) => {
-                await MessageUserFk.update(
-                    { status: true }, 
-                    { where: { messageId: message.id } } 
-                );
-            }));
+        await Promise.all(messages.map(async (message) => {
+    		const messageUserFk = await MessageUserFk.findOne({
+        		where: {
+         		   messageId: message.id,
+                    send_userId: {
+                        [Op.ne]: currentUserId
+                    }
+        		}
+    		});
+
+    		if (messageUserFk && messageUserFk.send_userId !== currentUserId && !message.status){
+       		 await Message.update(
+       		     { status: true }, 
+        		 { where: { id: message.id } } 
+       		 );
+   		 }
+		}));
             res.json(messages);
         
     } catch (error) {

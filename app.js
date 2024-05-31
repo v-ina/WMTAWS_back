@@ -16,6 +16,8 @@ app.use(cors())
 
 // app.set("port", process.env.PORT || port)
 
+app.use('/attachments', express.static(path.join(__dirname, 'attachments')));
+app.use('/userphotos', express.static(path.join(__dirname, 'userphotos')));
 
 
 const articleRouter = require('./routes/articleRoutes')

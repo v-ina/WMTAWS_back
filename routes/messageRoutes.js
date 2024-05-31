@@ -17,7 +17,7 @@ router
     .get(getUnreadMessages);
 
 router
-    .route('/all/:id')
+    .route('/all/:currentUserId')
     .get(getMessagesBetweenUsers);
 
 router
