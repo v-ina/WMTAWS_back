@@ -39,7 +39,7 @@ const createArticle =(req,res)=>{
             const fileInfos = req.files
             const uploadedFiles = []
             fileInfos.forEach((file, index)=>{
-                let filename = `${req.protocol}://${req.get('host')}/attachment/${file.filename}`
+                let filename = `${req.protocol}://${req.get('host')}/attachments/${file.filename}`
                 uploadedFiles.push(filename)
             })
             return Article.create({...req.body, userId : userIdWhoCreate, attachment : uploadedFiles }) 
