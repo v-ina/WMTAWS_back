@@ -16,12 +16,6 @@ app.use(cors())
 
 // app.set("port", process.env.PORT || port)
 
-app.use((req, res, next) => {
-    if (req.secure) {
-        return next();
-    }
-    res.redirect(`https://${req.headers.host}${req.url}`);
-});
 
 app.use('/attachments', express.static(path.join(__dirname, 'attachments')));
 app.use('/userphotos', express.static(path.join(__dirname, 'userphotos')));

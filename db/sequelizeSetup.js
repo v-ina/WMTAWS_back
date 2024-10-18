@@ -1,14 +1,32 @@
+const fs = require('fs')
+const path = require('path')
+
+const cKey = fs.readFileSync(path.resolve('/etc/letsencrypt/live/we-make-team.click/privkey1.pem'))
+const cCert = fs.readFileSync(path.resolve('/etc/letsencrypt/live/we-make-team.click/cert1.pem'))
+const cCA = fs.readFileSync(path.resolve('/etc/letsencrypt/live/we-make-team.click/chain1.pem'))
+
+require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize')
-const sequelize = new Sequelize('wmtdatabase', 'yeonsoo', 'sjdnf3373', {
-    host : 'wmtdatabase.c1oq6keyi1fu.eu-west-3.rds.amazonaws.com',
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+    host : process.env.DB_HOST,
     dialect : 'mariadb',
-    logging : false
+    logging : false,
+    dialectOptions: {
+        ssl: {
+            key: cKey,
+            cert: cCert,
+            ca: cCA,
+            rejectUnauthorized: true
+        }
+    }
 })
+
+console.log(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD);
 
 
 sequelize.authenticate()
 .then(()=>{console.log(`la connextion à la base de donnée a bien été etablié`)})
-.catch((error)=>{console.log(`impossible de se connecter à la base de donnée`, error)})
+.catch((error)=>{console.log(`impossible de se connecter à la base de donnée`, error.message)})
 
 
 const articleModel = require('../models/articleModel')
