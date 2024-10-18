@@ -16,6 +16,14 @@ app.use(cors())
 
 // app.set("port", process.env.PORT || port)
 
+const fs = require('fs')
+const options = {
+    key: fs.readFileSync('/etc/letsencrypt/live/we-make-team.click/privkey.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/we-make-team.click/cert.pem'),
+    ca: fs.readFileSync('/etc/letsencrypt/live/we-make-team.click/chain.pem'),
+};
+
+const server = https.createServer(options, app);
 
 app.use('/attachments', express.static(path.join(__dirname, 'attachments')));
 app.use('/userphotos', express.static(path.join(__dirname, 'userphotos')));

@@ -1,10 +1,3 @@
-const fs = require('fs')
-const path = require('path')
-
-const cKey = fs.readFileSync(path.resolve('/etc/letsencrypt/live/we-make-team.click/privkey1.pem'))
-const cCert = fs.readFileSync(path.resolve('/etc/letsencrypt/live/we-make-team.click/cert1.pem'))
-const cCA = fs.readFileSync(path.resolve('/etc/letsencrypt/live/we-make-team.click/chain1.pem'))
-
 require('dotenv').config();
 const { Sequelize, DataTypes } = require('sequelize')
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -13,10 +6,8 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     logging : false,
     dialectOptions: {
         ssl: {
-            key: cKey,
-            cert: cCert,
-            ca: cCA,
-            rejectUnauthorized: true
+            require: true,
+            rejectUnauthorized: false
         }
     }
 })
